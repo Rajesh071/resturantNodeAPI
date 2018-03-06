@@ -3,4 +3,8 @@ const path = require('path')
 const PORT = process.env.PORT || 5577
 
 express()
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .listen(PORT, (req,res) => {console.log(`Listening on ${ PORT }`
+
+    res.send('Hello');
+
+  }))
