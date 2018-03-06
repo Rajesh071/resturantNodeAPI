@@ -1,0 +1,19 @@
+{
+  "name": "resturantnodeapi",
+  "version": "1.0.0",
+  "description": "Resturant related APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajesh071/resturantNodeAPI.git"
+  },
+  "author": "Rajesh Sahani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rajesh071/resturantNodeAPI/issues"
+  },
+  "homepage": "https://github.com/Rajesh071/resturantNodeAPI#readme"
+}
