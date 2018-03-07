@@ -14,7 +14,7 @@ function handleError(res, reason, message, code) {
   res.status(code || 500).json({"error": message});
 }
 
-app.post('/books',(req,res) => {
+app.post('/userProfile',(req,res) => {
 
       var db1 = mclient.db('eatdelicious');
       var collection=db1.collection('UserProfile');
@@ -34,9 +34,21 @@ else{
 }
 
 
+
+
 })
 console.log(req.body);
 })
+
+app.get('/',(req,res) => {
+
+  res.send("use https://resturant-node-api.herokuapp.com/userProfile to create user");
+
+
+})
+
+
+
 MongoClient.connect(dburl,(err,client)  =>        {
                             if(err) return console.log(err)
                             mclient = client
