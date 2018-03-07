@@ -2,7 +2,7 @@ const express     = require("express")
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser  = require('body-parser');
 
-const dburl = "mongodb://rajesh:password@ds251598.mlab.com:51598/eatdelicious";
+const dburl = "mongodb://rajesh:password@ds257808.mlab.com:57808/heroku_q3zf2pf8";
 
 const app = express();
 var db;var mclient;
@@ -16,7 +16,7 @@ function handleError(res, reason, message, code) {
 
 app.post('/userProfile',(req,res) => {
 
-      var db1 = mclient.db('eatdelicious');
+      var db1 = mclient.db('heroku_q3zf2pf8');
       var collection=db1.collection('UserProfile');
       console.log("We are live 12" + collection);
       console.log("Response object is "  + res);
@@ -41,10 +41,7 @@ console.log(req.body);
 })
 
 app.get('/',(req,res) => {
-
   res.send("use https://resturant-node-api.herokuapp.com/userProfile to create user");
-
-
 })
 
 
