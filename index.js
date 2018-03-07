@@ -2,35 +2,41 @@ const express     = require("express")
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser  = require('body-parser');
 
-const dburl = "mongodb://heroku_q3zf2pf8:3fa8k6dpfpdpd0le1tl9ujn268@ds257808.mlab.com:57808/heroku_q3zf2pf8?authSource=dbWithUserCredentials";
+const dburl = "mongodb://rajesh:password@ds251598.mlab.com:51598/eatdelicious";
 
 const app = express();
 var db;var mclient;
-//mongodb://heroku_q3zf2pf8:3fa8k6dpfpdpd0le1tl9ujn268@ds257808.mlab.com:57808/heroku_q3zf2pf8
 const port = 8010;
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.post('/user',(req,res) =>       {
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
 
-                                      var db1 = mclient.db('resturant');
-                                      var collection=db1.collection('users');
+app.post('/books',(req,res) => {
 
-                                      const userdetails = { author: req.body.email, title:req.body.name}
-                                      collection.insert(userdetails,(err,result) => {
-                                          if(err) {
-                                              res.send({'error': 'An error has occured'})
-                                              console.log("" + err);
+      var db1 = mclient.db('eatdelicious');
+      var collection=db1.collection('UserProfile');
+      console.log("We are live 12" + collection);
+      console.log("Response object is "  + res);
 
-                                            }
-                                          else{
-                                            //res.send(result.ops[0])
-                                          //  console.log("We are live poreteteetet"  + mclient);
-                                            }
+  const book = { author: req.body.email, title:req.body.name}
+collection.insert(book,(err,results) => {
+if(err) {
+  res.send({'error': 'An error has occured'})
+}
+else{
+
+  res.status(201).json(results.ops[0]);
+
+
+}
+
+
 })
-                                    console.log(req.body);
-                                      //res.send('Hello')
-                                      })
-
+console.log(req.body);
+})
 MongoClient.connect(dburl,(err,client)  =>        {
                             if(err) return console.log(err)
                             mclient = client
