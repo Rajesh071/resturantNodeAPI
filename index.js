@@ -16,8 +16,8 @@ function handleError(res, reason, message, code) {
 }
 
 app.post('/userProfile',(req,res) => {
-  if (!(req.body.email && req.body.name && req.body.msisdn)) {
-     handleError(res, "Invalid user input", "Must provide all three field data", 400);
+  if (!(req.body.email && req.body.name && req.body.msisdn && req.body.city)) {
+     handleError(res, "Invalid user input", "Must provide all four field data", 400);
      return
    }
       var db1 = mclient.db('heroku_q3zf2pf8');
@@ -25,14 +25,14 @@ app.post('/userProfile',(req,res) => {
       console.log("We are live 12" + collection);
       console.log("Response object is "  + res);
 
-  const book = { email: req.body.email, name:req.body.name,mobileno:req.body.msisdn,}
-collection.insert(book,(err,results) => {
+  const userData = { email: req.body.email, name:req.body.name,mobileno:req.body.msisdn,city:req.body.city}
+collection.insert(userData,(err,results) => {
 if(err) {
   res.send({'error': 'An error has occured'})
 }
 else{
-
-  res.status(201).json(results.ops[0]);
+  //
+  res.status(201).json({"message":"success"});
 
 
 }
